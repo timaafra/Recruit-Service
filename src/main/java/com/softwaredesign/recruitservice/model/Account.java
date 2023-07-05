@@ -26,4 +26,10 @@ public class Account {
 
 
 
+    public boolean Validation(String password){
+        return this.password.equals(password);
+    }
+
+
+
 }
