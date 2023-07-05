@@ -50,8 +50,4 @@ public class User {
     private JobTitle job;
 
 
-
-
-
-
 }

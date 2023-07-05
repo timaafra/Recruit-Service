@@ -5,8 +5,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface JobTileRepository extends CrudRepository<JobTitle, Long> {
+public interface JobTileRepository extends GenericRepository<JobTitle, Long> {
 
     JobTitle findJobTitleById(Long id);
+    JobTitle findJobTitleByName(String name);
 
 }
