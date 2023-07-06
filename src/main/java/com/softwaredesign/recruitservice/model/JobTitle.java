@@ -9,7 +9,8 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class JobTitle extends BaseEntity {
+
+public class JobTitle extends BaseEntity{
 
 
 

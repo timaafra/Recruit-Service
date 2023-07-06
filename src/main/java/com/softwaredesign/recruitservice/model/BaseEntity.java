@@ -1,6 +1,5 @@
 package com.softwaredesign.recruitservice.model;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,8 +12,7 @@ import java.util.Date;
 
 @MappedSuperclass
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class BaseEntity {
 
 

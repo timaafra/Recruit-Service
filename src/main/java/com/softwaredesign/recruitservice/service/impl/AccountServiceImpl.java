@@ -7,9 +7,12 @@ import com.softwaredesign.recruitservice.model.Account;
 import com.softwaredesign.recruitservice.model.User;
 import com.softwaredesign.recruitservice.repository.AccountRepository;
 import com.softwaredesign.recruitservice.service.AccountService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.Objects;
-
+@Service
+@RequiredArgsConstructor
 public class AccountServiceImpl extends GenericServiceImpl<Account, Long, AccountRepository> implements AccountService {
 
     private UserServiceImpl userService;

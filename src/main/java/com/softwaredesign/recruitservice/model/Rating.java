@@ -10,13 +10,18 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Rating extends BaseEntity {
+
+public class Rating extends BaseEntity  {
+
+
 
     @Column(name = "score", nullable = false)
     private Integer score;
 
     @Column(name = "date", nullable = false)
-
     private LocalDate date;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id",referencedColumnName = "id",nullable = false)
+    private User user;
 }

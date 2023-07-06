@@ -3,9 +3,13 @@ package com.softwaredesign.recruitservice.service.impl;
 
 import com.softwaredesign.recruitservice.exception.NotFoundException;
 import com.softwaredesign.recruitservice.service.GenericService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public abstract class GenericServiceImpl<T, ID, R extends org.springframework.data.jpa.repository.JpaRepository> implements GenericService<T, ID> {
     protected R repository;
 

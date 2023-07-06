@@ -10,7 +10,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class Account extends BaseEntity{
+
+
+
 
 
     @Column(name = "user_name",nullable = false )
