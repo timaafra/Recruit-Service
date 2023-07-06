@@ -1,5 +1,6 @@
 package com.softwaredesign.recruitservice.model;
 
+import com.softwaredesign.recruitservice.model.enums.Score;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,13 +16,14 @@ public class Rating extends BaseEntity  {
 
 
 
-    @Column(name = "score", nullable = false)
-    private Integer score;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "score_type",columnDefinition = "enum('EXCELLENT','OK','BAD')",nullable = false)
+    private Score score;
 
     @Column(name = "date", nullable = false)
     private LocalDate date;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id",referencedColumnName = "id",nullable = false)
-    private User user;
+
+
+
 }
