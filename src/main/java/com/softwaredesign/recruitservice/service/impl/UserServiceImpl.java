@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class UserServiceImpl  extends GenericServiceImpl<User,Long, UserRepository> implements UserService {
 
-public  boolean
+
     public UserServiceImpl(UserRepository repository) {
         super(repository);
     }
@@ -25,7 +25,7 @@ public  boolean
     }
     @Override
     public void delete(User user){
-            User user1=repository.findUserById(user.getId());
+            User user1=repository.findUserByIdAndaAndActive(user.getId(), user.getActive());
             if(Objects.isNull(user1))
                 throw  new NotFoundException();
             repository.delete(user1);
