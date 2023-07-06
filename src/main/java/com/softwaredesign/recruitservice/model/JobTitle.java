@@ -9,14 +9,10 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class JobTitle {
+public class JobTitle extends BaseEntity {
 
 
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Id
-    @Column(name = "id", nullable = false)
-    private Long id;
 
     @Column(name = "name",nullable = false )
     private String name;

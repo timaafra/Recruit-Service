@@ -1,24 +1,26 @@
 package com.softwaredesign.recruitservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.softwaredesign.recruitservice.model.JobTitle;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name="User")
+@Table(name="user")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class User {
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Id
-    @Column(name = "id",nullable = false)
-    private Long id;
+public class User extends BaseEntity{
 
-    private Long personalID;
+
+
+    @Column(name="employee_id")
+    private Long employeeID;
 
 
 
@@ -48,6 +50,19 @@ public class User {
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "job_id")
     private JobTitle job;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "history")
+    @JsonIgnore
+    @JsonDeserialize
+    private List<History> history;
+
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "rating")
+    @JsonIgnore
+    @JsonDeserialize
+    private List<Rating> ratingList;
+
+
 
 
 }
