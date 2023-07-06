@@ -13,4 +13,5 @@ public interface GenericRepository<T,ID> extends JpaRepository<T,ID> {
 
 
 
+
 }

@@ -1,24 +1,27 @@
 package com.softwaredesign.recruitservice.model;
 
+
 import com.softwaredesign.recruitservice.model.JobTitle;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name="User")
+@Table(name="user")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class User {
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Id
-    @Column(name = "id",nullable = false)
-    private Long id;
+public class User extends BaseEntity {
 
-    private Long personalID;
+
+
+
+
+    @Column(name="employee_id")
+    private Long employeeID;
 
 
 
@@ -48,6 +51,13 @@ public class User {
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "job_id")
     private JobTitle job;
+
+
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
+    private List<Rating> ratingList;
+
+
 
 
 }

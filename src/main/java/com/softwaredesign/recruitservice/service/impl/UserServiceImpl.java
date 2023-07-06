@@ -6,9 +6,12 @@ import com.softwaredesign.recruitservice.model.Account;
 import com.softwaredesign.recruitservice.model.User;
 import com.softwaredesign.recruitservice.repository.UserRepository;
 import com.softwaredesign.recruitservice.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.Objects;
-
+@Service
+@RequiredArgsConstructor
 public class UserServiceImpl  extends GenericServiceImpl<User,Long, UserRepository> implements UserService {
 
 
@@ -25,7 +28,7 @@ public class UserServiceImpl  extends GenericServiceImpl<User,Long, UserReposito
     }
     @Override
     public void delete(User user){
-            User user1=repository.findUserById(user.getId());
+            User user1=repository.findUserByIdAndActiveIsTrue(user.getId());
             if(Objects.isNull(user1))
                 throw  new NotFoundException();
             repository.delete(user1);
@@ -34,7 +37,7 @@ public class UserServiceImpl  extends GenericServiceImpl<User,Long, UserReposito
 
     @Override
     public void update(User user){
-        User user1=repository.findUserById(user.getId());
+        User user1=repository.findUserByIdAndActiveIsTrue(user.getId());
         if(Objects.isNull(user1))
             throw  new NotFoundException();
         repository.save(user);

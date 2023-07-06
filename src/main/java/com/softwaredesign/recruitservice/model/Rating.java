@@ -1,21 +1,27 @@
 package com.softwaredesign.recruitservice.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
-@Setter
-@Getter
-public class Rating {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private Long id;
-    private Long userID;
+@Table(name = "rating")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+
+public class Rating extends BaseEntity  {
+
+
+
+    @Column(name = "score", nullable = false)
     private Integer score;
+
+    @Column(name = "date", nullable = false)
     private LocalDate date;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id",referencedColumnName = "id",nullable = false)
+    private User user;
 }
