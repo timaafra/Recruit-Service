@@ -2,6 +2,8 @@ package com.softwaredesign.recruitservice.service.impl;
 
 
 import com.softwaredesign.recruitservice.exception.NotFoundException;
+import com.softwaredesign.recruitservice.model.BaseEntity;
+import com.softwaredesign.recruitservice.model.User;
 import com.softwaredesign.recruitservice.service.GenericService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public abstract class GenericServiceImpl<T, ID, R extends org.springframework.data.jpa.repository.JpaRepository> implements GenericService<T, ID> {
+public abstract class GenericServiceImpl<T extends BaseEntity, ID, R extends org.springframework.data.jpa.repository.JpaRepository> implements GenericService<T, ID> {
     protected R repository;
 
 
@@ -40,8 +42,9 @@ public abstract class GenericServiceImpl<T, ID, R extends org.springframework.da
 
     @Override
     public void deleteById(ID id)  {
-        repository.deleteById(id);
-
+        T entity= (T) repository.findById(id).orElseThrow();
+        entity.setActive(false);
+        repository.save(entity);
     }
 
     @Override
