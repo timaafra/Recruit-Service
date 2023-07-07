@@ -14,8 +14,7 @@ public interface UserRepository extends  GenericRepository<User,Long>{
 
     User findByNationalCode(String nationalCode);
 
-
-
-
     User findByAccount(Account account);
+
+    User findByNameAndLastName (String name,String lastName);
 }

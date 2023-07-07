@@ -1,21 +1,17 @@
 package com.softwaredesign.recruitservice.service.impl;
 
 import com.softwaredesign.recruitservice.exception.AlreadyExist;
-import com.softwaredesign.recruitservice.exception.InvalidInputException;
 import com.softwaredesign.recruitservice.exception.NotFoundException;
 import com.softwaredesign.recruitservice.model.Account;
-import com.softwaredesign.recruitservice.model.Rating;
 import com.softwaredesign.recruitservice.model.User;
 import com.softwaredesign.recruitservice.model.enums.SalaryType;
 import com.softwaredesign.recruitservice.model.enums.Score;
-import com.softwaredesign.recruitservice.repository.RatingRepository;
 import com.softwaredesign.recruitservice.repository.UserRepository;
 import com.softwaredesign.recruitservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
@@ -57,7 +53,9 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long, UserReposito
         return repository.findByAccount(account);
     }
 
-    public Long calculateHour(LocalTime entryTime, LocalTime exitTime) {
+
+
+  private Long calculateHour(LocalTime entryTime, LocalTime exitTime) {
 
         Duration duration = Duration.between(entryTime, exitTime);
         Long hours = duration.toHours();
@@ -65,7 +63,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long, UserReposito
         return hours;
     }
 
-
+    @Override
     public Double calculateSalary(User user) {
 
         Long hours = calculateHour(user.getEntryHour(), user.getExitHour());
@@ -82,14 +80,21 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long, UserReposito
             return user.getJob().getSalaryPerHour() * hours;
     }
 
-    public Score Rate(Long hours) {
-        if (hours > 10)
-            return Score.EXCELLENT;
-        if (hours == 10)
-            return Score.OK;
-        else
-            return Score.BAD;
 
+   private Score Rate(Long hours) {
+       if (hours > 10)
+           return Score.EXCELLENT;
+       if (hours == 10)
+           return Score.OK;
+       else
+           return Score.BAD;
+
+   }
+
+
+    @Override
+    public User getByNameAndLastName(String name,String lastName){
+       return repository.findByNameAndLastName(name,lastName);
     }
 
 
